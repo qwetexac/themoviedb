@@ -1,0 +1,38 @@
+<div class="breadcrumbs">
+	{{#link-to 'movies'}}Все фильмы{{/link-to}} > <span>{{model.title}}</span>
+</div>
+<div class="movie_detail_block">
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="img_block">
+				<img src="http://image.tmdb.org/t/p/original/{{model.poster_path}}" alt="">
+			</div>
+		</div>
+		<div class="col-sm-9">
+			<div class="description">
+				<div class="title"><h1>{{model.title}}</h1> <h2>({{model.original_title}})</h2></div>
+				<div class="attrs clearfix">
+					<div class="attr-item">
+						Дата создания: {{model.release_date}}
+					</div>
+					<div class="attr-item">
+						Жанр: 
+						{{#each model.genres as |genre|}} 
+							{{genre.name}}<span class="comma">, </span> 
+						{{/each}}
+					</div>
+					<div class="attr-item">
+						{{model.runtime}} мин.
+					</div>
+					<div class="attr-item vote">
+						Рейтинг: <b>{{model.vote_average}}</b>/10
+					</div>
+				</div>
+
+				<div class="text">{{model.overview}}</div>
+			</div>
+		</div>
+	</div>
+</div>
+{{outlet}}
+

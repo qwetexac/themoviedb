@@ -1,0 +1,45 @@
+<div class="starter-template">
+	<h1>Поиск фильмов</h1>
+	<p class="lead">Введите название фильма ниже:</p>
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="history_wrap">
+				{{#each model.history as |post|}}
+					{{index/history-item item=post}}
+				{{/each}}
+			</div>
+			<form action="" class="find_film">
+				{{input type="text" name=query value=query key-up='changeQuery' placeholder="Название фильма..." required="required" autofocus="true" }}
+				<button class="btn btn-primary" {{action 'findMovie'}}>Найти фильм</button>
+			</form>
+		</div>
+	</div>
+	<div id="movies_result">
+		
+		{{#if model.state}}
+		<hr>
+			<div id="movies_search_wrap">
+				{{#each model.results as |movie|}}
+					{{#if movie.poster_path}}
+					<div class="col-lg-3 col-md-4 col-sm-6 movie_wrap">
+						<div class="item">
+							<div class="img_wrap">
+								<img src="http://image.tmdb.org/t/p/original/{{movie.poster_path}}" alt="">
+							</div>
+							<div class="title">
+								{{movie.name}}
+							</div>
+							{{#link-to 'detail' movie.id}}Подробнее{{/link-to}}
+						</div>
+					</div>
+					{{/if}}
+				{{/each}}
+			</div>
+		{{else}}
+		<hr>
+		<p>{{model.error}}</p>
+		{{/if}}
+	</div>
+	{{outlet}}
+</div>
+

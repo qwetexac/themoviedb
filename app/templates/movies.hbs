@@ -1,0 +1,18 @@
+{{#list-movies action "onScroll"}}
+<div class="row" {{action "onScroll"}}>
+	{{#each model as |movie|}}
+	<div class="col-lg-3 col-md-4 col-sm-6 movie_wrap">
+		<div class="item">
+			<div class="img_wrap">
+				<img src="http://image.tmdb.org/t/p/original/{{movie.poster_path}}" alt="">
+			</div>
+			<div class="title">
+				{{movie.name}}
+			</div>
+			{{#link-to 'detail' movie.id}}Подробнее{{/link-to}}
+		</div>
+	</div>
+	{{/each}}
+</div>
+{{/list-movies}}
+{{outlet}}
